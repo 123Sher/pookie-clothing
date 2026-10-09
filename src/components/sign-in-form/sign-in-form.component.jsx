@@ -3,7 +3,7 @@ import { useState } from "react";
 
 import FormInput from '../form-input/form-input.component';
 
-import { signInWithGooglePopup, createUserDocumentFromAuth, signInWithEmailAndPassword, signInAuthUserWithEmailAndPassword } from "../../utils/firebase/firebase.utils";
+import { signInWithGooglePopup, signInAuthUserWithEmailAndPassword } from "../../utils/firebase/firebase.utils";
 
 import './sign-in-form.styles.scss';
 import Button from '../button/button.component';
@@ -51,7 +51,7 @@ const SignInForm = () =>
         event.preventDefault();
 
         try{
-            const { user } = await signInAuthUserWithEmailAndPassword(email, password); // whenever user
+            await signInAuthUserWithEmailAndPassword(email, password); // whenever user
             // signs in, we want to actually take this user object and store it inside the context.
             //setCurrentUser(user);
             resetFormFields();

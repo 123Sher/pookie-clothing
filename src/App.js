@@ -55,7 +55,7 @@ const App = () =>{
               //if the store does not have thunk enabled, then we'll get a error.
           });
             return unsubscribe
-        },[]);
+        },[dispatch]);
 
   return (
     <Routes> {/*  component is used to define your route configuration — 

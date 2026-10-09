@@ -4,7 +4,7 @@ import logger from 'redux-logger';
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist'; // two methods to set up the persistence
 import storage from 'redux-persist/lib/storage';
 import { rootReducer } from './root-reducer';
-import thunk from 'redux-thunk';
+
 
 //store object:
 //1) holds your whole app state

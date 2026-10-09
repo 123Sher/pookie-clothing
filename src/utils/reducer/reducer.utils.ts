@@ -1,4 +1,4 @@
-import { UnknownAction } from "redux";
+
 // UnknownAction => state management library, TS type that represents an action whose property is type
 //In Redux, an action is simply an object that describes something that happened.
 //When a reducer receives an action, it doesn't know which action it is yet.

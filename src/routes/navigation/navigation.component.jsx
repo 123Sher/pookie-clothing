@@ -5,11 +5,10 @@ import { useSelector } from "react-redux";
 import { selectIsCartOpen } from "../../store/cart/cart.selector";
 import CartIcon from "../../components/cart-icon/cart-icon-component";
 import CartDropdown from "../../components/cart-dropdown/cart-dropdown.component";
-import { Fragment, useContext} from "react"; //a Fragment is used to group multiple elements without adding an extra node to the DOM.
+import { Fragment} from "react"; //a Fragment is used to group multiple elements without adding an extra node to the DOM.
 import { ReactComponent as CrwnLogo} from '../../assets/crown.svg'; //import the SVG file as a React component
 import { signOutUser } from "../../utils/firebase/firebase.utils";
 //import { UserContext } from "../../contexts/user.context";
-import { CartContext } from "../../contexts/cart.context";
 
 import './navigation.styles.scss'
 
