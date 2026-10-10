@@ -1,17 +1,19 @@
-import { useEffect } from "react"; //createContext is a function that helps you share data (like state or functions)
-//  globally across your component tree without having to pass props down manually at every level.
+import { useEffect } from "react"; 
+import { lazy,Suspense } from "react";
 import { useDispatch } from "react-redux";
 import { onAuthStateChangedListener , createUserDocumentFromAuth } from "./utils/firebase/firebase.utils";
 
-
+import { setCurrentUser  } from "./store/user/user.action";
 import { Routes,Route } from 'react-router-dom'; //these two components are used to assemble routing at application level.
 //import route components in App.js so React Router knows which component to show for each path.
 import Home from './routes/home/home.component';
 import Navigation from './routes/navigation/navigation.component';
-import Authentication from './routes/authentication/authentication.component';
-import Shop from './routes/shop/shop.component';
-import Checkout from './routes/checkout/checkout.component';
-import { setCurrentUser  } from "./store/user/user.action";
+
+const Shop = lazy(() => import('./routes/shop/shop.component'));
+const Authentication = lazy(() => import('./routes/authentication/authentication.component'));
+const Checkout = lazy(() => import('./routes/checkout/checkout.component'));
+
+
 
 
 //the app component does not actually need this category's map data.
@@ -58,23 +60,26 @@ const App = () =>{
         },[dispatch]);
 
   return (
-    <Routes> {/*  component is used to define your route configuration — 
-    essentially telling your app which components to render based on the URL.*/}
-      <Route path='/' element={<Navigation />}> {/*<Navigation /> is the layout, all other pages are the children,
-      they must render inside <Navigation /> via Outlet */}
-        <Route index element={<Home />} />  
-        {/*React Router doesn't need a path on the index route, 
-        because it’s automatically matched when the parent route is matched exactly and 
-        no other child route is specified. */}
-        <Route path='shop/*' element={<Shop />} />
-         {/* Without /*, React Router won’t match child routes
-         * means: “match everything after /shop
-         /shop/hats won’t render anything
-         shop/* => Render <Shop /> for /shop AND anything that starts with /shop/...*/}
-        <Route path='auth' element={<Authentication />} />
-        <Route path='checkout' element={<Checkout />} />
-      </Route> {/* defines a single route — mapping a URL path to a React component.*/}
-    </Routes>
+    <Suspense fallback={<div>Loading...</div>}>
+      <Routes> {/*  component is used to define your route configuration — 
+      essentially telling your app which components to render based on the URL.*/}
+        <Route path='/' element={<Navigation />}> {/*<Navigation /> is the layout, all other pages are the children,
+        they must render inside <Navigation /> via Outlet */}
+          <Route index element={<Home />} />  
+          {/*React Router doesn't need a path on the index route, 
+          because it’s automatically matched when the parent route is matched exactly and 
+          no other child route is specified. */}
+          <Route path='shop/*' element={<Shop />} />
+          {/* Without /*, React Router won’t match child routes
+          * means: “match everything after /shop
+          /shop/hats won’t render anything
+          shop/* => Render <Shop /> for /shop AND anything that starts with /shop/...*/}
+          <Route path='auth' element={<Authentication />} />
+          <Route path='checkout' element={<Checkout />} />
+        </Route> {/* defines a single route — mapping a URL path to a React component.*/}
+      </Routes>
+    </Suspense>
+    
   ) 
   //these components are able to connect to the URL and therefore render the appropriate alignments is because of 
   // the fact that these are nested inside of the browser router in index.js.
