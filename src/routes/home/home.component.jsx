@@ -8,27 +8,27 @@ const Home = () => {
     {
       id: 1,
       title: 'hats',
-      imageUrl: 'https://i.ibb.co/cvpntL1/hats.png',
+      imageUrl: '/images/directory/hats.webp',
     },
     {
       id: 2,
       title: 'jackets',
-      imageUrl: 'https://i.ibb.co/px2tCc3/jackets.png',
+      imageUrl: '/images/directory/jackets.webp',
     },
     {
       id: 3,
       title: 'sneakers',
-      imageUrl: 'https://i.ibb.co/0jqHpnp/sneakers.png',
+      imageUrl: '/images/directory/sneakers.webp',
     },
     {
       id: 4,
       title: 'womens',
-      imageUrl: 'https://i.ibb.co/GCCdy8t/womens.png',
+      imageUrl: '/images/directory/womens.webp',
     },
     {
       id: 5,
       title: 'mens',
-      imageUrl: 'https://i.ibb.co/R70vBrQ/men.png',
+      imageUrl: '/images/directory/men.webp',
     },
   ];
 

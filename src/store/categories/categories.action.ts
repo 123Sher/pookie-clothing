@@ -52,7 +52,7 @@ type MyThunkDispatch = ThunkDispatch<any, any, UnknownAction>;
 export const fetchCategoriesAsync = () => //outer function that Shop.component.jsx calls
     //THUNK MIDDLEWARE automatically calls this
     async (dispatch: MyThunkDispatch) => {  // ← Redux injects dispatch here automatically
-    dispatch(fetchCategoriesStart());
+    dispatch(fetchCategoriesStart()); //// ① reducer runs NOW
     try{
        // Assert the return type to satisfy the action payload requirements
         const categoriesArray = (await getCategoriesAndDocuments()) as Category[];
@@ -71,3 +71,10 @@ export const fetchCategoriesAsync = () => //outer function that Shop.component.j
     }
     
 }
+
+
+// Shop.jsx            dispatch(fetchCategoriesAsync())
+// categories.action   dispatch(fetchCategoriesSuccess(categories))
+// node_modules/redux  currentReducer(currentState, action)   ← the call happens here
+// root-reducer.js     combineReducers routes it to each slice
+// categories.reducer  your switch case returns the new categories state

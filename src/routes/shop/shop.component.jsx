@@ -26,32 +26,17 @@ import { fetchCategoriesAsync } from '../../store/categories/categories.action';
 
 
 const Shop = () => {
-  console.log("SHOP FILE TEST 123");
   const dispatch = useDispatch();
 
 
 
   //Redux by default only accepts plain action objects. 
   // It has no idea how to handle async/await, API calls, or Firestore fetches.
-//   dispatch(async () => {
-//     const data = await getCategoriesAndDocuments(); // ❌ Redux will throw an error
-//     dispatch(setCategories(data));
-// });
    useEffect(() => {
-    //const getCategoriesMap = async () => 
-      //const categories = await getCategoriesAndDocuments('categories');
-      //dispatch(setCategories(categories));
-
+    //This sends a function into the store. 
+    // The thunk middleware catches it, calls it, and doesn’t forward it to the reducer. 
+    // So the reducer isn’t called at this point and the store doesn’t change.
       dispatch(fetchCategoriesAsync());
-      //Triggers the thunk — hands control to middleware
-      //  ↑ This doesn't dispatch an action object
-//  ↑ Thunk middleware sees it's a FUNCTION, so it calls it with (dispatch, getState)
-//  ↑ The component's job is done here — it just fires and forgets
-// thunk => asynchronous side effect event handling inside of Redux.
-      
-    
-
-    //getCategoriesMap();
   }, [dispatch]);
 
       //dispatch is stable

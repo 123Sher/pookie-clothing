@@ -17,3 +17,11 @@ export const rootReducer = combineReducers({
 
 //how to dispatch actions?
 //to get the value out of store into our application.
+
+// dispatch(plain action)
+//   → middleware
+//   → core dispatch (node_modules/redux)
+//   → persistedReducer (if used)
+//   → combineReducers → user, categories, cart reducers (all run)
+//   → new state object returned and saved as currentState
+//   → subscribers notified → useSelector → re-render if the selected slice changed

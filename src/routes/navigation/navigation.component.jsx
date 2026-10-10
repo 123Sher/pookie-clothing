@@ -57,7 +57,10 @@ const Navigation = () =>
        
       </div>
        {isCartOpen && <CartDropdown />}
-       <Outlet />
+       <main>
+          <Outlet />
+       </main>
+       
        {/* <Outlet /> is only meant to be used inside a parent route component — a component that has child routes defined in App.js.*/}
     </Fragment>
   )
