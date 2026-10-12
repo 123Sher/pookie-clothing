@@ -1,106 +1,14 @@
-// .product-card-container {
-//   width: 100%;
-//   display: flex;
-//   flex-direction: column;
-//   height: 350px;
-//   align-items: center;
-//   position: relative;
-
-//   img {
-//     width: 100%;
-//     height: 95%;
-//     object-fit: cover;
-//     margin-bottom: 5px;
-//   }
-
-//   button {
-//     width: 80%;
-//     opacity: 0.7;
-//     position: absolute;
-//     top: 255px;
-//     display: none;
-//   }
-
-//   &:hover {
-//     img {
-//       opacity: 0.8;
-//     }
-
-//     button {
-//       opacity: 0.85;
-//       display: flex;
-//     }
-//   }
-
-//   .footer {
-//     width: 100%;
-//     height: 5%;
-//     display: flex;
-//     justify-content: space-between;
-//     font-size: 18px;
-
-//     .name {
-//       width: 90%;
-//       margin-bottom: 15px;
-//     }
-
-//     .price {
-//       width: 10%;
-//     }
-//   }
-// }
-
 .product-card-container {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
-
-  .image-wrapper {            // optional, see note below
-    position: relative;
-    width: 100%;
-  }
 
   img {
     width: 100%;
-    aspect-ratio: 3 / 4;      // replaces height: 350px / 95%
+    aspect-ratio: 3 / 4;
     object-fit: cover;
-    margin-bottom: 5px;
-  }
-
-  .button {
-    width: 80%;
-    min-width: unset;
-    padding: 0 10px;
-    font-size: 14px;
-    display: none;
-  }
-
-  @media (hover: hover) {
-    &:hover {
-      img { opacity: 0.8; }
-      .button { opacity: 0.85; display: flex; }
-    }
-  }
-
-  @media (hover: none) {
-    .button {
-      display: flex;
-      opacity: 1;
-      position: static;
-      width: 100%;
-      margin-top: 8px;
-    }
-  }
-
-  &:hover {
-    img { opacity: 0.8; }
-
-    button {
-      opacity: 0.85;
-      display: flex;
-    }
+    margin-bottom: 8px;
   }
 
   .footer {
@@ -109,38 +17,50 @@
     justify-content: space-between;
     gap: 8px;
     font-size: 18px;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 
     .name {
-      flex: 1;                // replaces width: 90%
+      flex: 1;
       min-width: 0;
       overflow-wrap: anywhere;
     }
 
     .price {
-      flex-shrink: 0;         // replaces width: 10%
+      flex-shrink: 0;
     }
   }
 
-  // Touch devices: no hover, so always show the button below the image
-  @media (hover: none) {
-    img { margin-bottom: 8px; }
+  // "button" (not ".button") so it beats .button-container's min-width/padding
+  button {
+    width: 100%;
+    min-width: 0;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 10px;
+    font-size: 14px;
+    opacity: 0.9;
+  }
 
+  // Mouse devices: button is invisible until hover, but keeps its space (no layout jump)
+  @media (hover: hover) {
     button {
-      position: static;
-      transform: none;
-      display: flex;
-      width: 100%;
-      height: 40px;
-      opacity: 0.9;
-      order: 3;               // sits after the footer
-      margin-bottom: 10px;
+      opacity: 0;
     }
 
-    .footer { order: 2; }
+    &:hover {
+      img {
+        opacity: 0.8;
+      }
+
+      button {
+        opacity: 0.85;
+      }
+    }
   }
 
   @media (max-width: 480px) {
-    .footer { font-size: 15px; }
+    .footer {
+      font-size: 15px;
+    }
   }
 }
