@@ -69,18 +69,29 @@
     margin-bottom: 5px;
   }
 
-  button {
+  .button {
     width: 80%;
-    min-width: 0;             // overrides the shared button's min-width
-    padding: 0 8px;           // overrides large horizontal padding
-    white-space: nowrap;      // stops "ADD TO CART" wrapping
+    min-width: unset;
+    padding: 0 10px;
     font-size: 14px;
-    opacity: 0.7;
-    position: absolute;
-    top: 55%;                 // replaces top: 255px
-    left: 50%;
-    transform: translateX(-50%);
     display: none;
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      img { opacity: 0.8; }
+      .button { opacity: 0.85; display: flex; }
+    }
+  }
+
+  @media (hover: none) {
+    .button {
+      display: flex;
+      opacity: 1;
+      position: static;
+      width: 100%;
+      margin-top: 8px;
+    }
   }
 
   &:hover {
